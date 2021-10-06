@@ -1,5 +1,5 @@
-# Trapezoidal Rule - Approximating the region under the graph of the function f(x) as a trapezoid and calculating its area.
-Find the approximation of any definite integral.
+# Trapezoidal Rule - Find the approximation of any definite integral
+Approximating the region under the graph of the function f(x) as a trapezoid and calculating its area.
 
 ## Usage
 
