@@ -16,13 +16,19 @@ function plotGraph() {
             y: yVal,
             type: 'line'
         }
-        
-        Plotly.newPlot('plot', [trace]);
 
         // Upper, Lower, n
         const upper = document.getElementById('upper').value;
         const lower = document.getElementById('lower').value;
-        const n = document.getElementById('n').value;
+        var n = document.getElementById('n').value;
+
+        //Ensure n is between 4-10
+        if (n < 4) {
+            n = 4;
+        } 
+        else if (n > 10) {
+            n = 10;
+        }
 
         //Calculate h
         const h = (upper-lower)/n;
@@ -39,6 +45,20 @@ function plotGraph() {
 
         const tArea = (h/2)*sum;
         document.getElementById("area").innerHTML = "Trapezoidal Rule Area ≈ " + tArea;
+
+        //Find y-values
+        const yLower = eq.evaluate({x: lower});
+        const yUpper = eq.evaluate({x: upper});
+
+        //Render plot for Trapzoidal Area
+        const trace2 = {
+            x: [lower, lower, upper, upper], 
+            y: [0, yLower, yUpper, 0],
+            fill: 'toself',
+            fillcolor: '#5CABF5'
+        }
+        
+        Plotly.newPlot('plot', [trace, trace2]);
     }
     catch (err) {
         console.error(err);
