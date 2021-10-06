@@ -15,4 +15,4 @@ Click `Draw`
 
 
 ## Library
-Made using the [Plot.ly library](https://plotly.com/javascript/)
+Made using the [Plot.ly library](https://plotly.com/javascript/) & [Math.JS](https://mathjs.org/index.html)
