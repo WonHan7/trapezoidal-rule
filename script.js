@@ -22,7 +22,7 @@ function plotGraph() {
         const lower = document.getElementById('lower').value;
         var n = document.getElementById('n').value;
 
-        //Ensure n is between 4-10
+        // Ensure n is between 4-10
         if (n < 4) {
             n = 4;
         } 
@@ -35,12 +35,16 @@ function plotGraph() {
 
         //Compute sum of first and last terms of equation
         //Do this because middle terms will all be multiplied by 2
-        let sum = eq.evaluate({x: upper}) + eq.evaluate({x: lower});
+        let sum = eq.evaluate({x: lower}) + eq.evaluate({x: upper});
+
+        let interval = Number(lower) + Number(h);
+
+        //4 * sin(x) + 5 * cos(x/2)
 
         //Compute middle terms
-        for (i = 1; i < n; i++) {
-            let scope = {x: lower+i*h};
-            sum += (2*eq.evaluate(scope));
+        for (i = 1; i < n; i++) {          
+            sum += Math.abs(2*eq.evaluate({x: interval}));
+            interval += Number(h);
         }
 
         const tArea = (h/2)*sum;
