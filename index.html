@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Use if downloaded plotly; Else, use CDN -->
+    <!-- <script src="plotly-2.4.2.min.js"></script> -->
+    <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    
+    <form>
+        <label for="function">Enter an equation: <input type="text" name="function" id="function"></label>
+        <input type="submit" value="Draw">
+    </form>
+
+    <div id="plot">
+
+    </div>
+
+    <script>
+        graph = document.getElementById('plot');
+        Plotly.newPlot(graph, 
+        [{
+            x:[1,2,3,4,5],
+            y:[1,2,4,8,16] 
+        }],
+        {
+            margin: {t: 0}
+        });
+    </script>
+
+</body>
+</html>

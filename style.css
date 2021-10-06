@@ -1,0 +1,20 @@
+/* Import Fonts Here */
+
+/* Containers */
+body {
+    background-color: white;
+}
+input {
+    font-size: large;
+}
+
+/* Class/ID */
+#plot {
+    width: 600px;
+    height: 600px;
+}
+
+/* Desktop */
+/* @media screen and ( min-width : 800px ) {
+    
+} */
