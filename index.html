@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 
-    <!-- Use if downloaded plotly; Else, use CDN -->
+    <!-- Use below if downloaded plotly -->
     <!-- <script src="plotly-2.4.2.min.js"></script> -->
     <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
+    <script src="https://unpkg.com/mathjs@9.5.0/lib/browser/math.js"></script>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +16,7 @@
 <body>
     
     <form id="form">
-        <label for="function">Enter an equation: <input type="text" name="function" id="function"></label>
+        <label for="function">Enter f(x): <input type="text" name="function" id="function"></label>
         <label for="upper">Upper limit: <input type="text" name="upper" id="upper"></label>
         <label for="lower">Lower limit: <input type="text" name="lower" id="lower"></label>
         <label for="n">Number of Trapezoids: <input type="text" name="n" id="n" min="4" max="10"></label>
@@ -26,32 +27,40 @@
     </div>
 
     <script>
-        function getValues() 
-        {
-            const fx = document.getElementById('function').value;
-            const upper = document.getElementById('upper').value;
-            const lower = document.getElementById('lower').value;
-            const n = document.getElementById('n').value;
+        function getValues() {
+            try {
+                // Compiling f(x) into readable equation
+                const fx = document.getElementById('function').value;                
+                const eq = math.compile(fx);
 
-            const expr = math.compile(fx);
+                //Evaluate f(x) for different plot points of x & y
+                const xVal = math.range(-10, 10, 0.1).toArray();
+                const yVal = xVal.map(function (x) {
+                    return eq.evaluate({x: x})
+                })
 
-            const xVal = math.range(-10,10, 0.1).toArray();
-            const yVal = xVal.map(function (x)
-            {
-                return expr.ealuate({x: x});
-            })
+                //Render plot using plotly
+                const trace = {
+                    x: xVal,
+                    y: yVal,
+                    type: 'line'
+                }
 
-            const trace1 = 
-            {
-                x: xVal,
-                y: yVal
+                Plotly.newPlot('plot', [trace]);
+
+                // Upper, Lower, n
+                const upper = document.getElementById('upper').value;
+                const lower = document.getElementById('lower').value;
+                const n = document.getElementById('n').value;
             }
-
-            Plotly.newPlot('plot', [trace1]);
+            catch (err) {
+                console.error(err);
+                alert(err);
+            }            
         }
 
-        document.getElementById('form').onsubmit = function(event)
-        {
+        document.getElementById('form').onsubmit = function(event) {
+            event.preventDefault();
             getValues();
         }
     </script>
