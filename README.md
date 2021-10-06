@@ -2,6 +2,7 @@
 Find the approximation of any definite integral.
 
 ##Usage
+
 Open the `index.html`
 
 Enter any function, `f(x)`, into the equation box
