@@ -1,20 +1,96 @@
 /* Import Fonts Here */
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
 
 /* Containers */
 body {
     background-color: white;
+    font-family: 'PT Serif', serif;
 }
 input {
-    font-size: large;
+    font-family: 'PT Serif', serif;
+    font-size: larger;
+    font-style: bold;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=submit] {
+    width: 50%;
+    background-color: #5CABF5;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
 /* Class/ID */
-#plot {
-    width: 600px;
-    height: 600px;
+#site {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr;
+    gap: 10px;
 }
+#form {
+    display: grid;
+    grid-row: 1/2;
+    font-size: 24px;
+    gap: 20px;
+}
+#plot {
+    grid-row: 3/4;
+    margin-left: auto;
+    margin-right: auto;
 
+    width: 1000px;
+    height: 1000px;
+}
+#area {
+    grid-row: 2/3;
+    text-align: center;
+}
 /* Desktop */
-/* @media screen and ( min-width : 800px ) {
+@media screen and ( min-width : 800px ) {
+    input {
+        font-family: 'PT Serif', serif;
+        font-size: medium;
+        font-style: bold;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type=submit] {
+        width: 50%;
+        background-color: #5CABF5;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        margin-left: auto;
+        margin-right: auto;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    label {
+        font-size: medium;
+    }
+    #plot {
+        grid-row: 3/4;
+        margin-left: auto;
+        margin-right: auto;
     
-} */
+        width: 800px;
+        height: 800px;
+    }
+}

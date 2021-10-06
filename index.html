@@ -7,6 +7,8 @@
     <script src="https://cdn.plot.ly/plotly-2.4.2.min.js"></script>
     <script src="https://unpkg.com/mathjs@9.5.0/lib/browser/math.js"></script>
 
+	<link rel="stylesheet" href="style.css">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,18 +17,20 @@
 </head>
 <body>
     
-    <form id="form">
-        <label for="function">Enter f(x): <input type="text" name="function" id="function" value="1+(x^2/10)"></label>
-        <label for="upper">Upper limit: <input type="text" name="upper" id="upper" value="1"></label>
-        <label for="lower">Lower limit: <input type="text" name="lower" id="lower" value="0"></label>
-        <label for="n">Number of Trapezoids (4-10): <input type="text" name="n" id="n" value="4"></label>
-        <input type="submit" value="Draw">
-    </form>
-
-    <div id="plot">
+    <div id="site">
+        <form id="form">
+            <label for="function">Enter f(x): <input type="text" name="function" id="function" value="1+(x^2/10)"></label>
+            <label for="upper">Upper limit: <input type="text" name="upper" id="upper" value="1"></label>
+            <label for="lower">Lower limit: <input type="text" name="lower" id="lower" value="0"></label>
+            <label for="n">Number of Trapezoids (4-10): <input type="text" name="n" id="n" value="4"></label>
+            <input type="submit" value="Draw" id="draw">
+        </form>
+    
+        <!-- Where graph is drawn -->
+        <div id="plot"></div>
+    
+        <h1 id="area">Trapezoidal Rule Area ≈ </h1>
     </div>
-
-    <h1 id="area">Trapezoidal Rule Area ≈ </h1>
 
     <script src="script.js"></script>
 
