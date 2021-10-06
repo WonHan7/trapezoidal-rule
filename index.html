@@ -16,10 +16,10 @@
 <body>
     
     <form id="form">
-        <label for="function">Enter f(x): <input type="text" name="function" id="function"></label>
-        <label for="upper">Upper limit: <input type="text" name="upper" id="upper"></label>
-        <label for="lower">Lower limit: <input type="text" name="lower" id="lower"></label>
-        <label for="n">Number of Trapezoids: <input type="text" name="n" id="n" min="4" max="10"></label>
+        <label for="function">Enter f(x): <input type="text" name="function" id="function" value="x^2"></label>
+        <label for="upper">Upper limit: <input type="text" name="upper" id="upper" value="1"></label>
+        <label for="lower">Lower limit: <input type="text" name="lower" id="lower" value="0"></label>
+        <label for="n">Number of Trapezoids (4-10): <input type="text" name="n" id="n" min="4" max="10" value="4"></label>
         <input type="submit" value="Draw">
     </form>
 
@@ -27,7 +27,7 @@
     </div>
 
     <script>
-        function getValues() {
+        function plotGraph() {
             try {
                 // Compiling f(x) into readable equation
                 const fx = document.getElementById('function').value;                
@@ -39,19 +39,34 @@
                     return eq.evaluate({x: x})
                 })
 
-                //Render plot using plotly
+                //Render plot for f(x) graph
                 const trace = {
                     x: xVal,
                     y: yVal,
                     type: 'line'
                 }
-
+                
                 Plotly.newPlot('plot', [trace]);
 
                 // Upper, Lower, n
                 const upper = document.getElementById('upper').value;
                 const lower = document.getElementById('lower').value;
                 const n = document.getElementById('n').value;
+
+                //Calculate h
+                const h = (upper-lower)/n;
+
+                //Compute sum of first and last terms of equation
+                //Do this because middle terms will all be multiplied by 2
+                const sum = eq.evaluate({x: upper}) + eq.evaluate({x: lower});
+
+                //Compute middle terms
+                for (i = 1; i < n; i++) {
+                    const scope = lower+i*h;
+                    sum += 2*eq.evaluate({x: scope});
+                }
+
+                const tArea = (h/2)*sum;
             }
             catch (err) {
                 console.error(err);
@@ -61,7 +76,7 @@
 
         document.getElementById('form').onsubmit = function(event) {
             event.preventDefault();
-            getValues();
+            plotGraph();
         }
     </script>
 
