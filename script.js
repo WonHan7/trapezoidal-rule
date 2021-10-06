@@ -29,15 +29,16 @@ function plotGraph() {
 
         //Compute sum of first and last terms of equation
         //Do this because middle terms will all be multiplied by 2
-        const sum = eq.evaluate({x: upper}) + eq.evaluate({x: lower});
+        let sum = eq.evaluate({x: upper}) + eq.evaluate({x: lower});
 
         //Compute middle terms
         for (i = 1; i < n; i++) {
-            const scope = lower+i*h;
-            sum += 2*eq.evaluate({x: scope});
+            let scope = {x: lower+i*h};
+            sum += (2*eq.evaluate(scope));
         }
 
         const tArea = (h/2)*sum;
+        document.getElementById("area").innerHTML = "Trapezoidal Rule Area ≈ " + tArea;
     }
     catch (err) {
         console.error(err);
