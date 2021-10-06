@@ -1,7 +1,7 @@
 # Trapezoidal Rule - Approximating the region under the graph of the function f(x) as a trapezoid and calculating its area.
 Find the approximation of any definite integral.
 
-##Usage
+## Usage
 
 Open the `index.html`
 
@@ -14,5 +14,5 @@ Define `n` - number of slices
 Click `Draw`
 
 
-##Library
+## Library
 Made using the [Plot.ly library](https://plotly.com/javascript/)
