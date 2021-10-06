@@ -14,25 +14,46 @@
 </head>
 <body>
     
-    <form>
+    <form id="form">
         <label for="function">Enter an equation: <input type="text" name="function" id="function"></label>
+        <label for="upper">Upper limit: <input type="text" name="upper" id="upper"></label>
+        <label for="lower">Lower limit: <input type="text" name="lower" id="lower"></label>
+        <label for="n">Number of Trapezoids: <input type="text" name="n" id="n" min="4" max="10"></label>
         <input type="submit" value="Draw">
     </form>
 
     <div id="plot">
-
     </div>
 
     <script>
-        graph = document.getElementById('plot');
-        Plotly.newPlot(graph, 
-        [{
-            x:[1,2,3,4,5],
-            y:[1,2,4,8,16] 
-        }],
+        function getValues() 
         {
-            margin: {t: 0}
-        });
+            const fx = document.getElementById('function').value;
+            const upper = document.getElementById('upper').value;
+            const lower = document.getElementById('lower').value;
+            const n = document.getElementById('n').value;
+
+            const expr = math.compile(fx);
+
+            const xVal = math.range(-10,10, 0.1).toArray();
+            const yVal = xVal.map(function (x)
+            {
+                return expr.ealuate({x: x});
+            })
+
+            const trace1 = 
+            {
+                x: xVal,
+                y: yVal
+            }
+
+            Plotly.newPlot('plot', [trace1]);
+        }
+
+        document.getElementById('form').onsubmit = function(event)
+        {
+            getValues();
+        }
     </script>
 
 </body>
