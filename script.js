@@ -1,6 +1,6 @@
 function plotGraph() {
     try {
-        // Compiling f(x) into readable equation
+        //Compiling f(x) into readable equation
         const fx = document.getElementById('function').value;                
         const eq = math.compile(fx);
 
@@ -17,12 +17,12 @@ function plotGraph() {
             type: 'line'
         }
 
-        // Upper, Lower, n
+        //Upper, Lower, n
         const upper = document.getElementById('upper').value;
         const lower = document.getElementById('lower').value;
         var n = document.getElementById('n').value;
 
-        // Ensure n is between 4-10
+        //Ensure n is between 4-10
         if (n < 4) {
             n = 4;
         } 
@@ -38,8 +38,6 @@ function plotGraph() {
         let sum = eq.evaluate({x: lower}) + eq.evaluate({x: upper});
 
         let interval = Number(lower) + Number(h);
-
-        //4 * sin(x) + 5 * cos(x/2)
 
         //Compute middle terms
         for (i = 1; i < n; i++) {          
